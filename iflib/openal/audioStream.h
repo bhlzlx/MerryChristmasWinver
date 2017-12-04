@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <list>
 #include <string>
-#include <memory
+#include <memory.h>
 
 namespace iflib
 {

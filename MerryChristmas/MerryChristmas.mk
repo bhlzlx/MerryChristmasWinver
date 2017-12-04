@@ -5,15 +5,15 @@
 ## Debug
 ProjectName            :=MerryChristmas
 ConfigurationName      :=Debug
-WorkspacePath          :=E:/Github/MerryChristmas
-ProjectPath            :=E:/Github/MerryChristmas/MerryChristmas
+WorkspacePath          :=E:/Github/MerryChristmasWinver
+ProjectPath            :=E:/Github/MerryChristmasWinver/MerryChristmas
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=phantom
-Date                   :=02/12/2017
+Date                   :=04/12/2017
 CodeLitePath           :=D:/app/CodeLite
 LinkerName             :=D:/app/tdmgcc/bin/g++.exe
 SharedObjectLinkerName :=D:/app/tdmgcc/bin/g++.exe -shared -fPIC
@@ -27,7 +27,7 @@ OutputSwitch           :=-o
 LibraryPathSwitch      :=-L
 PreprocessorSwitch     :=-D
 SourceSwitch           :=-c 
-OutputFile             :=./bin/$(ProjectName)
+OutputFile             :=../bin/$(ProjectName)
 Preprocessors          :=
 ObjectSwitch           :=-o 
 ArchiveOutputSwitch    := 
@@ -62,7 +62,7 @@ AS       := D:/app/tdmgcc/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=D:\app\CodeLite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/resource.rc$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) 
 
 
 
@@ -93,8 +93,10 @@ PreBuild:
 ##
 ## Objects
 ##
+$(IntermediateDirectory)/resource.rc$(ObjectSuffix): resource.rc
+	$(RcCompilerName) -i "E:/Github/MerryChristmasWinver/MerryChristmas/resource.rc" $(RcCmpOptions)   $(ObjectSwitch)$(IntermediateDirectory)/resource.rc$(ObjectSuffix) $(RcIncludePath)
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/Github/MerryChristmas/MerryChristmas/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/Github/MerryChristmasWinver/MerryChristmas/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
 

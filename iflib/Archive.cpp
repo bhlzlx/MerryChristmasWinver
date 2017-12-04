@@ -1,6 +1,9 @@
 #include "Archive.h"
 #include <cassert>
 #include <memory.h>
+
+#include <windows.h>
+
 namespace iflib
 {
 	struct MemBlob :public IBlob
@@ -45,7 +48,7 @@ namespace iflib
 			return m_nCapacity;
 		}
 
-		size_t Seek(uint8_t _flag, uint32_t _offset)
+		size_t Seek(uint8_t _flag, ptrdiff_t _offset)
 		{
 			switch (_flag)
 			{
@@ -175,7 +178,7 @@ namespace iflib
 		{
 			return length;
 		}
-		virtual size_t Seek(uint8_t _flag, uint32_t _offset) override
+		virtual size_t Seek(uint8_t _flag, ptrdiff_t _offset) override
 		{
 			return fseek(file, _offset, _flag);
 		}
@@ -229,6 +232,108 @@ namespace iflib
 		eBlobType Type()
 		{
 			return eStreamBlob;
+		}
+	};
+    
+    struct AssetBlob :public IBlob
+	{
+        const void *    memptr;
+        const void *    memptrend;
+        const void *    currptr;
+        HANDLE          hRes;
+        HGLOBAL         hGlobal;
+		size_t          length;
+        size_t          resid;
+        std::string     resname;
+        
+		virtual size_t Size() override
+		{
+			return length;
+		}
+		virtual size_t Seek(uint8_t _flag, ptrdiff_t _offset) override
+		{
+            switch( _flag )
+            {
+            case SEEK_CUR:
+            {
+                currptr += _offset;
+                if( currptr < memptr ) currptr = memptr;
+                else if( currptr > memptrend) memptr = memptrend;
+                break;
+            }
+            case SEEK_SET:
+            {
+                if( _offset < 0 ) currptr = memptr;
+                else if( _offset > length) memptr = memptrend;
+                else currptr+=_offset;
+                break;
+            }
+            case SEEK_END:
+            {
+                if( _offset > 0 ) currptr = memptrend;
+                else if( _offset < -length) currptr = memptr;
+                else currptr = memptrend + _offset;
+                break;
+            }
+            }
+            return 1;
+		}
+		virtual size_t Read(void * _pOut, uint32_t _nSize) override
+		{
+            ptrdiff_t left = (ptrdiff_t)memptrend - (ptrdiff_t)currptr;
+            if( left > _nSize )
+            {
+                memcpy(_pOut, currptr, _nSize);
+                currptr += _nSize;
+                return _nSize;
+            }
+            else
+            {
+                memcpy(_pOut, currptr, left);
+                currptr += left;
+                return left;
+            }            
+		}
+
+		virtual size_t Tell()override
+		{
+			return (ptrdiff_t)currptr - (ptrdiff_t)memptr;
+		}
+		virtual size_t Write(const void * _pIn, uint32_t _nSize) override
+		{
+			return 0;
+		}
+		virtual size_t Resize(size_t _nSize) override
+		{
+			return 0;
+		}
+		virtual bool Eof() override
+		{
+			return currptr>=memptrend;
+		}
+		virtual char * GetCurr() override
+		{
+			return nullptr;
+		}
+		virtual char * GetBuffer() override
+		{
+			return nullptr;
+		}
+        
+		virtual void Release() override
+		{
+            //::UnlockResource ( hGlobal) ;
+            ::FreeResource(hRes);
+            delete this;
+		}
+		virtual const char * Filepath() override
+		{
+			return nullptr;
+		}
+
+		eBlobType Type()
+		{
+			return eAssetBlob;
 		}
 	};
 
@@ -294,6 +399,33 @@ namespace iflib
 		}
 		return fpath;
 	}
+    
+    IBlob * Archive::OpenAsset( uint32_t _id, const char * _type )
+    {
+        HANDLE res = ::FindResource(nullptr, MAKEINTRESOURCE(_id), _type);
+        DWORD dwSize  = 0;
+        if( res )
+        {
+            dwSize = ::SizeofResource(nullptr, (HRSRC)res);
+            if( dwSize )
+            {
+                HGLOBAL hGlobal = ::LoadResource(nullptr, (HRSRC)res);
+                LPVOID pBuffer = LockResource(hGlobal);
+                if( pBuffer )
+                {
+                    AssetBlob * blob = new AssetBlob;
+                    blob->hGlobal = hGlobal;
+                    blob->hRes = res;
+                    blob->length = dwSize;
+                    blob->memptr = pBuffer;
+                    blob->memptrend = pBuffer + dwSize;
+                    blob->currptr = pBuffer;
+                    return blob;
+                }
+            }
+        }
+        return nullptr;
+    }
 
 	IBlob * Archive::Open(const char * _fp, FileBlob::eBlobType _type)
 	{

@@ -5,15 +5,15 @@
 ## Debug
 ProjectName            :=3rdlib
 ConfigurationName      :=Debug
-WorkspacePath          :=E:/Github/MerryChristmas
-ProjectPath            :=E:/Github/MerryChristmas/3rdlib
+WorkspacePath          :=E:/Github/MerryChristmasWinver
+ProjectPath            :=E:/Github/MerryChristmasWinver/3rdlib
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=phantom
-Date                   :=02/12/2017
+Date                   :=04/12/2017
 CodeLitePath           :=D:/app/CodeLite
 LinkerName             :=D:/app/tdmgcc/bin/g++.exe
 SharedObjectLinkerName :=D:/app/tdmgcc/bin/g++.exe -shared -fPIC
@@ -62,7 +62,7 @@ AS       := D:/app/tdmgcc/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=D:\app\CodeLite
-Objects0=$(IntermediateDirectory)/cjson_cJSON.c$(ObjectSuffix) $(IntermediateDirectory)/cjson_cJSON_Utils.c$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/cjson_cJSON_Utils.c$(ObjectSuffix) $(IntermediateDirectory)/cjson_cJSON.c$(ObjectSuffix) 
 
 
 
@@ -79,8 +79,8 @@ $(OutputFile): $(Objects)
 	@echo "" > $(IntermediateDirectory)/.d
 	@echo $(Objects0)  > $(ObjectsFileList)
 	$(AR) $(ArchiveOutputSwitch)$(OutputFile) @$(ObjectsFileList) $(ArLibs)
-	@$(MakeDirCommand) "E:\Github\MerryChristmas/.build-debug"
-	@echo rebuilt > "E:\Github\MerryChristmas/.build-debug/3rdlib"
+	@$(MakeDirCommand) "E:\Github\MerryChristmasWinver/.build-debug"
+	@echo rebuilt > "E:\Github\MerryChristmasWinver/.build-debug/3rdlib"
 
 MakeIntermediateDirs:
 	@$(MakeDirCommand) "./Debug"
@@ -95,21 +95,21 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/cjson_cJSON.c$(ObjectSuffix): cjson/cJSON.c $(IntermediateDirectory)/cjson_cJSON.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "E:/Github/MerryChristmas/3rdlib/cjson/cJSON.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/cjson_cJSON.c$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/cjson_cJSON.c$(DependSuffix): cjson/cJSON.c
-	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/cjson_cJSON.c$(ObjectSuffix) -MF$(IntermediateDirectory)/cjson_cJSON.c$(DependSuffix) -MM cjson/cJSON.c
-
-$(IntermediateDirectory)/cjson_cJSON.c$(PreprocessSuffix): cjson/cJSON.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/cjson_cJSON.c$(PreprocessSuffix) cjson/cJSON.c
-
 $(IntermediateDirectory)/cjson_cJSON_Utils.c$(ObjectSuffix): cjson/cJSON_Utils.c $(IntermediateDirectory)/cjson_cJSON_Utils.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "E:/Github/MerryChristmas/3rdlib/cjson/cJSON_Utils.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/cjson_cJSON_Utils.c$(ObjectSuffix) $(IncludePath)
+	$(CC) $(SourceSwitch) "E:/Github/MerryChristmasWinver/3rdlib/cjson/cJSON_Utils.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/cjson_cJSON_Utils.c$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/cjson_cJSON_Utils.c$(DependSuffix): cjson/cJSON_Utils.c
 	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/cjson_cJSON_Utils.c$(ObjectSuffix) -MF$(IntermediateDirectory)/cjson_cJSON_Utils.c$(DependSuffix) -MM cjson/cJSON_Utils.c
 
 $(IntermediateDirectory)/cjson_cJSON_Utils.c$(PreprocessSuffix): cjson/cJSON_Utils.c
 	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/cjson_cJSON_Utils.c$(PreprocessSuffix) cjson/cJSON_Utils.c
+
+$(IntermediateDirectory)/cjson_cJSON.c$(ObjectSuffix): cjson/cJSON.c $(IntermediateDirectory)/cjson_cJSON.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "E:/Github/MerryChristmasWinver/3rdlib/cjson/cJSON.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/cjson_cJSON.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/cjson_cJSON.c$(DependSuffix): cjson/cJSON.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/cjson_cJSON.c$(ObjectSuffix) -MF$(IntermediateDirectory)/cjson_cJSON.c$(DependSuffix) -MM cjson/cJSON.c
+
+$(IntermediateDirectory)/cjson_cJSON.c$(PreprocessSuffix): cjson/cJSON.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/cjson_cJSON.c$(PreprocessSuffix) cjson/cJSON.c
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

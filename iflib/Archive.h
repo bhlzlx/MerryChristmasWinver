@@ -10,13 +10,14 @@ namespace iflib
 		enum eBlobType:uint8_t 
 		{
 			eMemBlob = 0,
-			eStreamBlob = 1
+			eStreamBlob = 1,
+            eAssetBlob = 2,
 		};
-		virtual size_t 		Size() = 0;
-		virtual size_t		Seek(uint8_t _flag, uint32_t _offset) = 0;
-		virtual size_t		Read(void* _pOut, uint32_t _nSize) = 0;
-		virtual size_t		Write(const void* _pIn, uint32_t _nSize) = 0;
-		virtual size_t		Tell() = 0;
+		virtual size_t Size() = 0;
+		virtual size_t Seek(uint8_t _flag, ptrdiff_t _offset) = 0;
+		virtual size_t Read(void* _pOut, uint32_t _nSize) = 0;
+		virtual size_t Write(const void* _pIn, uint32_t _nSize) = 0;
+		virtual size_t Tell() = 0;
 		/* return 0 if success, or return -1 if failed */
 		virtual size_t 	Resize(size_t _nSize) = 0;
 		virtual bool 		Eof() = 0;
@@ -35,6 +36,7 @@ namespace iflib
 	public:
 		Archive();
 		IBlob * Open(const char * _fp, IBlob::eBlobType _type = IBlob::eMemBlob);
+        IBlob * OpenAsset( uint32_t _id, const char * _type );
 		bool Exist(const char * _fp);
 		const std::string& GetRoot() const;
 		void Init( const char * _root);

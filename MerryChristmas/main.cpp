@@ -2,8 +2,79 @@
 #include <gdiplus.h>
 #include <iflib/utils/JsonStructParser.h>
 #include <iflib/utils/JsonBlob.h>
+#include "resource.h"
 
+struct ResIStream: public IStream
+{
+    iflib::IBlob * blob;
+    HRESULT __stdcall Read( void  *pv,ULONG cb,ULONG *pcbRead)
+    {
+        ULONG v = blob->Read(pv, cb);
+        *pcbRead = v;
+        if( cb > v )
+            return S_FALSE;
+        return S_OK;
+    }
+    HRESULT __stdcall Seek( LARGE_INTEGER  dlibMove, DWORD dwOrigin, ULARGE_INTEGER *plibNewPosition )
+    {
+        blob->Seek((uint8_t)dwOrigin, dlibMove.LowPart);
+        return S_OK;
+    }
+    
+    STDMETHOD(QueryInterface)(THIS_ REFIID,PVOID*)
+    {
+        return S_OK;
+    }
+	STDMETHOD_(ULONG,AddRef)(THIS)
+    {
+        return 0;
+    }
+	STDMETHOD_(ULONG,Release)(THIS)
+    {
+        blob->Release();
+        delete this;
+    }
+	STDMETHOD(Write)(THIS_ void const*,ULONG,ULONG*)
+    {
+        return S_FALSE;
+    }
+	STDMETHOD(SetSize)(THIS_ ULARGE_INTEGER)
+    {
+        return S_FALSE;
+    }
+	STDMETHOD(CopyTo)(THIS_ IStream*,ULARGE_INTEGER,ULARGE_INTEGER*,ULARGE_INTEGER*)
+    {
+        return S_FALSE;
+    }
+	STDMETHOD(Commit)(THIS_ DWORD)
+    {
+        return S_FALSE;
+    }
+	STDMETHOD(Revert)(THIS) 
+    {
+        return S_FALSE;
+    }
+	STDMETHOD(LockRegion)(THIS_ ULARGE_INTEGER,ULARGE_INTEGER,DWORD)
+    {
+        return S_OK;
+    }
+	STDMETHOD(UnlockRegion)(THIS_ ULARGE_INTEGER,ULARGE_INTEGER,DWORD)
+    {
+        return S_OK;
+    }
+	STDMETHOD(Stat)(THIS_ STATSTG*,DWORD)
+    {
+        return S_OK;
+    }
+	STDMETHOD(Clone)(THIS_ LPSTREAM*)
+    {
+        return S_FALSE;
+    }
+};
 
+ResIStream resIStream;
+
+class Image;
 struct PngWindowLoadConfig
 {
     std::string image;
@@ -29,6 +100,11 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
                      int nCmdShow) 
 { 
  
+   // HANDLE hImage = ::FindResource(nullptr,MAKEINTRESOURCE(IDR_PNG_BRAND),"PNG");
+    
+    iflib::Archive * arch = iflib::GetDefArchive();
+    iflib::IBlob * blob = arch->OpenAsset(IDR_PNG_BRAND, "PNG");
+    resIStream.blob = blob;
     /**/ 
     Gdiplus::GdiplusStartupInput gdiInput; 
     Gdiplus::GdiplusStartup(&gdiplusStartupToken,&gdiInput,NULL); 
@@ -66,8 +142,8 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
            WS_OVERLAPPEDWINDOW, /* default window */ 
            CW_USEDEFAULT,       /* Windows decides the position */ 
            CW_USEDEFAULT,       /* where the window ends up on the screen */ 
-           500,                 /* The programs width */ 
-           500,                 /* and height in pixels */ 
+           20,                 /* The programs width */ 
+           20,                 /* and height in pixels */ 
            HWND_DESKTOP,        /* The window is a child-window to desktop */ 
            NULL,                /* No menu */ 
            hThisInstance,       /* Program Instance handler */ 
@@ -102,16 +178,19 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
     HBITMAP memBitmap = ::CreateCompatibleBitmap(hdc,wndSize.cx,wndSize.cy); 
     ::SelectObject(memDC,memBitmap); 
     
-    auto arch = iflib::GetDefArchive();
+  /*  auto arch = iflib::GetDefArchive();
     auto blob = arch->Open("configure.json");
     auto jsonBlob = iflib::JsonBlob::FromFile(blob);
     iflib::JsonBlob::JsonItemPtr item = jsonBlob->FindItem("mc");
     PngWindowLoadConfig conf;
     PngWindowLoadConfig::X::Parse( conf, item->item);
+    */
     
-    Gdiplus::Image image(conf.image.c_str()); 
+   Gdiplus::Image image( &resIStream ); 
+   //Gdiplus::Image
+  // Gdiplus::Image image(L"");
     Gdiplus::Graphics graphics(memDC); 
-    graphics.DrawImage(&image,0,0,wndSize.cx,wndSize.cy); 
+    //graphics.DrawImage(&image,0,0,wndSize.cx,wndSize.cy); 
     /******************************************** 
     *   step 2. 
     *   Get "UpdateLayeredWindow" function's 
