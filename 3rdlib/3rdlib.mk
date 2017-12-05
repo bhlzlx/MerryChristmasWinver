@@ -5,18 +5,18 @@
 ## Debug
 ProjectName            :=3rdlib
 ConfigurationName      :=Debug
-WorkspacePath          :=E:/Github/MerryChristmasWinver
-ProjectPath            :=E:/Github/MerryChristmasWinver/3rdlib
+WorkspacePath          :=D:/personalproject/github/MerryChristmasWinver
+ProjectPath            :=D:/personalproject/github/MerryChristmasWinver/3rdlib
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
-User                   :=phantom
-Date                   :=04/12/2017
-CodeLitePath           :=D:/app/CodeLite
-LinkerName             :=D:/app/tdmgcc/bin/g++.exe
-SharedObjectLinkerName :=D:/app/tdmgcc/bin/g++.exe -shared -fPIC
+User                   :=Administrator
+Date                   :=05/12/2017
+CodeLitePath           :=E:/application/CodeLite
+LinkerName             :=C:/TDM-GCC-32/bin/g++.exe
+SharedObjectLinkerName :=C:/TDM-GCC-32/bin/g++.exe -shared -fPIC
 ObjectSuffix           :=.o
 DependSuffix           :=.o.d
 PreprocessSuffix       :=.i
@@ -36,7 +36,7 @@ ObjectsFileList        :="3rdlib.txt"
 PCHCompileFlags        :=
 MakeDirCommand         :=makedir
 RcCmpOptions           := 
-RcCompilerName         :=D:/app/tdmgcc/bin/windres.exe
+RcCompilerName         :=C:/TDM-GCC-32/bin/windres.exe
 LinkOptions            :=  
 IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). 
 IncludePCH             := 
@@ -49,20 +49,20 @@ LibPath                := $(LibraryPathSwitch).
 ## Common variables
 ## AR, CXX, CC, AS, CXXFLAGS and CFLAGS can be overriden using an environment variables
 ##
-AR       := D:/app/tdmgcc/bin/ar.exe rcu
-CXX      := D:/app/tdmgcc/bin/g++.exe
-CC       := D:/app/tdmgcc/bin/gcc.exe
+AR       := C:/TDM-GCC-32/bin/ar.exe rcu
+CXX      := C:/TDM-GCC-32/bin/g++.exe
+CC       := C:/TDM-GCC-32/bin/gcc.exe
 CXXFLAGS :=  -g $(Preprocessors)
 CFLAGS   :=  -g $(Preprocessors)
 ASFLAGS  := 
-AS       := D:/app/tdmgcc/bin/as.exe
+AS       := C:/TDM-GCC-32/bin/as.exe
 
 
 ##
 ## User defined environment variables
 ##
-CodeLiteDir:=D:\app\CodeLite
-Objects0=$(IntermediateDirectory)/cjson_cJSON_Utils.c$(ObjectSuffix) $(IntermediateDirectory)/cjson_cJSON.c$(ObjectSuffix) 
+CodeLiteDir:=E:\application\CodeLite
+Objects0=$(IntermediateDirectory)/cjson_cJSON.c$(ObjectSuffix) $(IntermediateDirectory)/cjson_cJSON_Utils.c$(ObjectSuffix) 
 
 
 
@@ -79,8 +79,8 @@ $(OutputFile): $(Objects)
 	@echo "" > $(IntermediateDirectory)/.d
 	@echo $(Objects0)  > $(ObjectsFileList)
 	$(AR) $(ArchiveOutputSwitch)$(OutputFile) @$(ObjectsFileList) $(ArLibs)
-	@$(MakeDirCommand) "E:\Github\MerryChristmasWinver/.build-debug"
-	@echo rebuilt > "E:\Github\MerryChristmasWinver/.build-debug/3rdlib"
+	@$(MakeDirCommand) "D:\personalproject\github\MerryChristmasWinver/.build-debug"
+	@echo rebuilt > "D:\personalproject\github\MerryChristmasWinver/.build-debug/3rdlib"
 
 MakeIntermediateDirs:
 	@$(MakeDirCommand) "./Debug"
@@ -95,21 +95,21 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/cjson_cJSON_Utils.c$(ObjectSuffix): cjson/cJSON_Utils.c $(IntermediateDirectory)/cjson_cJSON_Utils.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "E:/Github/MerryChristmasWinver/3rdlib/cjson/cJSON_Utils.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/cjson_cJSON_Utils.c$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/cjson_cJSON_Utils.c$(DependSuffix): cjson/cJSON_Utils.c
-	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/cjson_cJSON_Utils.c$(ObjectSuffix) -MF$(IntermediateDirectory)/cjson_cJSON_Utils.c$(DependSuffix) -MM cjson/cJSON_Utils.c
-
-$(IntermediateDirectory)/cjson_cJSON_Utils.c$(PreprocessSuffix): cjson/cJSON_Utils.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/cjson_cJSON_Utils.c$(PreprocessSuffix) cjson/cJSON_Utils.c
-
 $(IntermediateDirectory)/cjson_cJSON.c$(ObjectSuffix): cjson/cJSON.c $(IntermediateDirectory)/cjson_cJSON.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "E:/Github/MerryChristmasWinver/3rdlib/cjson/cJSON.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/cjson_cJSON.c$(ObjectSuffix) $(IncludePath)
+	$(CC) $(SourceSwitch) "D:/personalproject/github/MerryChristmasWinver/3rdlib/cjson/cJSON.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/cjson_cJSON.c$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/cjson_cJSON.c$(DependSuffix): cjson/cJSON.c
 	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/cjson_cJSON.c$(ObjectSuffix) -MF$(IntermediateDirectory)/cjson_cJSON.c$(DependSuffix) -MM cjson/cJSON.c
 
 $(IntermediateDirectory)/cjson_cJSON.c$(PreprocessSuffix): cjson/cJSON.c
 	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/cjson_cJSON.c$(PreprocessSuffix) cjson/cJSON.c
+
+$(IntermediateDirectory)/cjson_cJSON_Utils.c$(ObjectSuffix): cjson/cJSON_Utils.c $(IntermediateDirectory)/cjson_cJSON_Utils.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "D:/personalproject/github/MerryChristmasWinver/3rdlib/cjson/cJSON_Utils.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/cjson_cJSON_Utils.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/cjson_cJSON_Utils.c$(DependSuffix): cjson/cJSON_Utils.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/cjson_cJSON_Utils.c$(ObjectSuffix) -MF$(IntermediateDirectory)/cjson_cJSON_Utils.c$(DependSuffix) -MM cjson/cJSON_Utils.c
+
+$(IntermediateDirectory)/cjson_cJSON_Utils.c$(PreprocessSuffix): cjson/cJSON_Utils.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/cjson_cJSON_Utils.c$(PreprocessSuffix) cjson/cJSON_Utils.c
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

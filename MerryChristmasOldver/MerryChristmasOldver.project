@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Project Name="MerryChristmas" Version="10.0.0" InternalType="Console">
+<CodeLite_Project Name="MerryChristmasOldver" Version="10.0.0" InternalType="Console">
   <Plugins>
     <Plugin Name="qmake">
-      <![CDATA[00010001N0005Debug000000000000]]>
+      <![CDATA[00020001N0005Debug0000000000000001N0007Release000000000000]]>
     </Plugin>
   </Plugins>
-  <VirtualDirectory Name="asset">
-    <File Name="AssetIStream.h"/>
-  </VirtualDirectory>
   <VirtualDirectory Name="res">
-    <File Name="resource.rc"/>
+    <File Name="MerryChristmas.rc"/>
   </VirtualDirectory>
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="TrayIcon.h"/>
+    <File Name="TrayIcon.cpp"/>
+    <File Name="resource.h"/>
+    <File Name="CTimer.h"/>
+    <File Name="CTimer.cpp"/>
+    <File Name="CRandGen.h"/>
+    <File Name="CRandGen.cpp"/>
+    <File Name="CPhantomWnd.h"/>
+    <File Name="CPhantomWnd.cpp"/>
+    <File Name="CGdiPlusBitmap.h"/>
     <File Name="main.cpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
@@ -26,22 +33,18 @@
       </Linker>
       <ResourceCompiler Options=""/>
     </GlobalSettings>
-    <Configuration Name="Debug" CompilerType="MinGW ( tdmgcc )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+    <Configuration Name="Debug" CompilerType="MinGW ( gcc.exe (tdm-1) 5.1.0 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g;-O0;-Wall;-std=c++11" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
-        <IncludePath Value="../3rdinc"/>
-        <IncludePath Value=".."/>
       </Compiler>
-      <Linker Options="-liflib -l3rdlib -lgdiplus -lgdi32" Required="yes">
-        <LibraryPath Value="../bin"/>
-      </Linker>
+      <Linker Options="-lgdiplus -lgdi32 -lwinmm -lOle32" Required="yes"/>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="../bin/$(ProjectName)" IntermediateDirectory="./Debug" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="../bin/" PauseExecWhenProcTerminates="yes" IsGUIProgram="yes" IsEnabled="yes"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Debug" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="yes" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
       </Environment>
-      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="C:\TDM-GCC-32\gdb32\bin\gdb32.exe" IsExtended="no">
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="yes">
         <DebuggerSearchPaths/>
         <PostConnectCommands/>
         <StartupCommands/>
@@ -70,18 +73,18 @@
       </Completion>
     </Configuration>
     <Configuration Name="Release" CompilerType="MinGW ( gcc.exe (tdm-1) 5.1.0 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-O2;-Wall" C_Options="-O2;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+      <Compiler Options="-O2;-Wall;-std=c++11" C_Options="-O2;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
         <Preprocessor Value="NDEBUG"/>
       </Compiler>
-      <Linker Options="" Required="yes"/>
+      <Linker Options="-lgdiplus -lgdi32 -lwinmm -lOle32 -mwindows" Required="yes"/>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Release" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Release" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="yes" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
       </Environment>
-      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="C:\TDM-GCC-32\gdb32\bin\gdb32.exe" IsExtended="yes">
         <DebuggerSearchPaths/>
         <PostConnectCommands/>
         <StartupCommands/>
@@ -110,9 +113,6 @@
       </Completion>
     </Configuration>
   </Settings>
-  <Dependencies Name="Debug">
-    <Project Name="3rdlib"/>
-    <Project Name="iflib"/>
-  </Dependencies>
+  <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>
 </CodeLite_Project>

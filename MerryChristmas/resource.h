@@ -3,3 +3,4 @@
 #endif
 
 #define IDR_PNG_BRAND                           101
+#define IDR_PNG_FLOAT                           102

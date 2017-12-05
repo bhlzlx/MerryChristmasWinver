@@ -5,18 +5,18 @@
 ## Debug
 ProjectName            :=MerryChristmas
 ConfigurationName      :=Debug
-WorkspacePath          :=E:/Github/MerryChristmasWinver
-ProjectPath            :=E:/Github/MerryChristmasWinver/MerryChristmas
+WorkspacePath          :=D:/personalproject/github/MerryChristmasWinver
+ProjectPath            :=D:/personalproject/github/MerryChristmasWinver/MerryChristmas
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
-User                   :=phantom
-Date                   :=04/12/2017
-CodeLitePath           :=D:/app/CodeLite
-LinkerName             :=D:/app/tdmgcc/bin/g++.exe
-SharedObjectLinkerName :=D:/app/tdmgcc/bin/g++.exe -shared -fPIC
+User                   :=Administrator
+Date                   :=05/12/2017
+CodeLitePath           :=E:/application/CodeLite
+LinkerName             :=C:/TDM-GCC-32/bin/g++.exe
+SharedObjectLinkerName :=C:/TDM-GCC-32/bin/g++.exe -shared -fPIC
 ObjectSuffix           :=.o
 DependSuffix           :=.o.d
 PreprocessSuffix       :=.i
@@ -36,7 +36,7 @@ ObjectsFileList        :="MerryChristmas.txt"
 PCHCompileFlags        :=
 MakeDirCommand         :=makedir
 RcCmpOptions           := 
-RcCompilerName         :=D:/app/tdmgcc/bin/windres.exe
+RcCompilerName         :=C:/TDM-GCC-32/bin/windres.exe
 LinkOptions            :=  -liflib -l3rdlib -lgdiplus -lgdi32
 IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). $(IncludeSwitch)../3rdinc $(IncludeSwitch).. 
 IncludePCH             := 
@@ -49,19 +49,19 @@ LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)../bin
 ## Common variables
 ## AR, CXX, CC, AS, CXXFLAGS and CFLAGS can be overriden using an environment variables
 ##
-AR       := D:/app/tdmgcc/bin/ar.exe rcu
-CXX      := D:/app/tdmgcc/bin/g++.exe
-CC       := D:/app/tdmgcc/bin/gcc.exe
+AR       := C:/TDM-GCC-32/bin/ar.exe rcu
+CXX      := C:/TDM-GCC-32/bin/g++.exe
+CC       := C:/TDM-GCC-32/bin/gcc.exe
 CXXFLAGS :=  -g -O0 -Wall -std=c++11 $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
 ASFLAGS  := 
-AS       := D:/app/tdmgcc/bin/as.exe
+AS       := C:/TDM-GCC-32/bin/as.exe
 
 
 ##
 ## User defined environment variables
 ##
-CodeLiteDir:=D:\app\CodeLite
+CodeLiteDir:=E:\application\CodeLite
 Objects0=$(IntermediateDirectory)/resource.rc$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) 
 
 
@@ -74,11 +74,23 @@ Objects=$(Objects0)
 .PHONY: all clean PreBuild PrePreBuild PostBuild MakeIntermediateDirs
 all: $(OutputFile)
 
-$(OutputFile): $(IntermediateDirectory)/.d $(Objects) 
+$(OutputFile): $(IntermediateDirectory)/.d "..\.build-debug\3rdlib" "..\.build-debug\iflib" $(Objects) 
 	@$(MakeDirCommand) $(@D)
 	@echo "" > $(IntermediateDirectory)/.d
 	@echo $(Objects0)  > $(ObjectsFileList)
 	$(LinkerName) $(OutputSwitch)$(OutputFile) @$(ObjectsFileList) $(LibPath) $(Libs) $(LinkOptions)
+
+"..\.build-debug\3rdlib":
+	@$(MakeDirCommand) "..\.build-debug"
+	@echo stam > "..\.build-debug\3rdlib"
+
+
+"..\.build-debug\iflib":
+	@$(MakeDirCommand) "..\.build-debug"
+	@echo stam > "..\.build-debug\iflib"
+
+
+
 
 MakeIntermediateDirs:
 	@$(MakeDirCommand) "./Debug"
@@ -94,9 +106,9 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/resource.rc$(ObjectSuffix): resource.rc
-	$(RcCompilerName) -i "E:/Github/MerryChristmasWinver/MerryChristmas/resource.rc" $(RcCmpOptions)   $(ObjectSwitch)$(IntermediateDirectory)/resource.rc$(ObjectSuffix) $(RcIncludePath)
+	$(RcCompilerName) -i "D:/personalproject/github/MerryChristmasWinver/MerryChristmas/resource.rc" $(RcCmpOptions)   $(ObjectSwitch)$(IntermediateDirectory)/resource.rc$(ObjectSuffix) $(RcIncludePath)
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/Github/MerryChristmasWinver/MerryChristmas/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/personalproject/github/MerryChristmasWinver/MerryChristmas/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
 

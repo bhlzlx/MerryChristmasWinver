@@ -1,0 +1,1 @@
+./Release/main.cpp.o ./Release/CPhantomWnd.cpp.o ./Release/CRandGen.cpp.o ./Release/MerryChristmas.rc.o ./Release/TrayIcon.cpp.o ./Release/CTimer.cpp.o   

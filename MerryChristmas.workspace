@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="MerryChristmas" Database="" Version="10.0.0">
-  <Project Name="MerryChristmas" Path="MerryChristmas/MerryChristmas.project" Active="Yes"/>
+  <Project Name="MerryChristmas" Path="MerryChristmas/MerryChristmas.project" Active="No"/>
   <Project Name="iflib" Path="iflib/iflib.project" Active="No"/>
   <Project Name="3rdlib" Path="3rdlib/3rdlib.project" Active="No"/>
+  <Project Name="MerryChristmasOldver" Path="MerryChristmasOldver/MerryChristmasOldver.project" Active="Yes"/>
   <BuildMatrix>
-    <WorkspaceConfiguration Name="Debug" Selected="yes">
+    <WorkspaceConfiguration Name="Debug" Selected="no">
       <Environment/>
       <Project Name="MerryChristmas" ConfigName="Debug"/>
       <Project Name="iflib" ConfigName="Debug"/>
       <Project Name="3rdlib" ConfigName="Debug"/>
+      <Project Name="MerryChristmasOldver" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
       <Project Name="MerryChristmas" ConfigName="Release"/>
       <Project Name="iflib" ConfigName="Release"/>
       <Project Name="3rdlib" ConfigName="Release"/>
+      <Project Name="MerryChristmasOldver" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

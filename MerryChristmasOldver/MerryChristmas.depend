@@ -1,0 +1,187 @@
+# depslib dependency file v1.0
+1382271380 source:c:\users\phantom\desktop\merrychristmas\merrychristmas\merrychristmas.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1382271380 c:\users\phantom\desktop\merrychristmas\merrychristmas\resource.h
+
+1382546971 source:c:\users\phantom\desktop\merrychristmas\merrychristmas\main.cpp
+	<windows.h>
+	<gdiplus.h>
+	<tchar.h>
+	"resource.h"
+	"CPhantomWnd.h"
+	"TrayIcon.h"
+	"CTimer.h"
+
+1382248818 c:\users\phantom\desktop\merrychristmas\merrychristmas\cgdiplusbitmap.h
+	<gdiplus.h>
+
+1382623727 source:c:\users\phantom\desktop\merrychristmas\merrychristmas\cphantomwnd.cpp
+	"CPhantomWnd.h"
+	"TrayIcon.h"
+	"CTimer.h"
+
+1382541608 c:\users\phantom\desktop\merrychristmas\merrychristmas\cphantomwnd.h
+	<windows.h>
+	<vector>
+	<boost/shared_ptr.hpp>
+	<tchar.h>
+	"CRandGen.h"
+	"resource.h"
+	"CGdiPlusBitmap.h"
+
+1342950342 c:\users\phantom\desktop\merrychristmas\merrychristmas\trayicon.h
+	<windows.h>
+
+1382264687 source:c:\users\phantom\desktop\merrychristmas\merrychristmas\trayicon.cpp
+	"TrayIcon.h"
+
+1382622485 source:c:\users\phantom\desktop\merrychristmas\merrychristmas\crandgen.cpp
+	"CRandGen.h"
+
+1382623923 c:\users\phantom\desktop\merrychristmas\merrychristmas\crandgen.h
+	<ctime>
+	<cmath>
+	<cstdlib>
+	<cstdio>
+	<stack>
+
+1382538653 source:c:\users\phantom\desktop\merrychristmas\merrychristmas\ctimer.cpp
+	"CTimer.h"
+
+1382534714 c:\users\phantom\desktop\merrychristmas\merrychristmas\ctimer.h
+	"CPhantomWnd.h"
+	<windows.h>
+	<map>
+	<utility>
+	<boost/shared_ptr.hpp>
+
+1382768859 source:e:\merrychristmas\cphantomwnd.cpp
+	"CPhantomWnd.h"
+	"TrayIcon.h"
+	"CTimer.h"
+
+1382767074 e:\merrychristmas\cphantomwnd.h
+	<windows.h>
+	<vector>
+	<tr1/memory>
+	<tr1/shared_ptr.h>
+	<tchar.h>
+	"CRandGen.h"
+	"resource.h"
+	"CGdiPlusBitmap.h"
+
+1382626072 e:\merrychristmas\crandgen.h
+	<ctime>
+	<cmath>
+	<cstdlib>
+	<cstdio>
+
+1382768194 e:\merrychristmas\resource.h
+
+1382248818 e:\merrychristmas\cgdiplusbitmap.h
+	<gdiplus.h>
+
+1342950342 e:\merrychristmas\trayicon.h
+	<windows.h>
+
+1382706275 e:\merrychristmas\ctimer.h
+	"CPhantomWnd.h"
+	<windows.h>
+	<map>
+	<utility>
+	<unordered_map>
+
+1382624338 source:e:\merrychristmas\crandgen.cpp
+	"CRandGen.h"
+
+1382767745 source:e:\merrychristmas\ctimer.cpp
+	"CTimer.h"
+
+1382767592 source:e:\merrychristmas\main.cpp
+	<windows.h>
+	<gdiplus.h>
+	<tchar.h>
+	"resource.h"
+	"CPhantomWnd.h"
+	"TrayIcon.h"
+	"CTimer.h"
+
+1382768194 source:e:\merrychristmas\merrychristmas.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1382264687 source:e:\merrychristmas\trayicon.cpp
+	"TrayIcon.h"
+
+1358186334 e:\merrychristmas\vld.h
+	"vld_def.h"
+	<windows.h>
+
+1358186334 e:\merrychristmas\vld_def.h
+
+1382774519 source:e:\developtools\gits\merrychirstmaswin32\src\cphantomwnd.cpp
+	"CPhantomWnd.h"
+	"TrayIcon.h"
+	"CTimer.h"
+
+1382774519 e:\developtools\gits\merrychirstmaswin32\src\cphantomwnd.h
+	<windows.h>
+	<vector>
+	<tr1/memory>
+	<tr1/shared_ptr.h>
+	<tchar.h>
+	"CRandGen.h"
+	"resource.h"
+	"CGdiPlusBitmap.h"
+
+1382774519 e:\developtools\gits\merrychirstmaswin32\src\crandgen.h
+	<ctime>
+	<cmath>
+	<cstdlib>
+	<cstdio>
+
+1382774519 e:\developtools\gits\merrychirstmaswin32\src\resource.h
+
+1382774519 e:\developtools\gits\merrychirstmaswin32\src\cgdiplusbitmap.h
+	<gdiplus.h>
+
+1382774519 e:\developtools\gits\merrychirstmaswin32\src\trayicon.h
+	<windows.h>
+
+1382774519 e:\developtools\gits\merrychirstmaswin32\src\ctimer.h
+	"CPhantomWnd.h"
+	<windows.h>
+	<map>
+	<utility>
+	<unordered_map>
+
+1382774519 source:e:\developtools\gits\merrychirstmaswin32\src\crandgen.cpp
+	"CRandGen.h"
+
+1382774519 source:e:\developtools\gits\merrychirstmaswin32\src\ctimer.cpp
+	"CTimer.h"
+
+1382767592 source:e:\developtools\gits\merrychirstmaswin32\src\main.cpp
+	<windows.h>
+	<gdiplus.h>
+	<tchar.h>
+	"resource.h"
+	"CPhantomWnd.h"
+	"TrayIcon.h"
+	"CTimer.h"
+
+1382774519 source:e:\developtools\gits\merrychirstmaswin32\src\trayicon.cpp
+	"TrayIcon.h"
+
+1382774519 source:e:\developtools\gits\merrychirstmaswin32\src\merrychristmas.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+

@@ -265,7 +265,7 @@ namespace iflib
             {
                 if( _offset < 0 ) currptr = memptr;
                 else if( _offset > length) memptr = memptrend;
-                else currptr+=_offset;
+                else currptr = memptr + _offset;
                 break;
             }
             case SEEK_END:

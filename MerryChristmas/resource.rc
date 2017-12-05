@@ -12,3 +12,5 @@
 
 LANGUAGE 0, SUBLANG_NEUTRAL
 IDR_PNG_BRAND      PNG            ".\\res\\brand.png"
+LANGUAGE 0, SUBLANG_NEUTRAL
+IDR_PNG_FLOAT      PNG            ".\\res\\brand.png"
